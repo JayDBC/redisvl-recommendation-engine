@@ -6,9 +6,10 @@ This is a simple implementation of a Recommendation Engine for the IMDB Movie da
 
 ## Setup
 #1
-Download <i>25k_imdb_movie_dataset.csv</i> and text_embeddings.pkl using the links below and place them in ./data folder.<br>
-- <a href='https://redis-ai-resources.s3.us-east-2.amazonaws.com/recommenders/datasets/content-filtering/25k_imdb_movie_dataset.csv'>25k_imdb_movie_dataset.csv</a><br>
-- https://redis-ai-resources.s3.us-east-2.amazonaws.com/recommenders/datasets/content-filtering/text_embeddings.pkl<br><br>
+Download the files linked below and place them in ./data folder.<br>
+<a href='https://redis-ai-resources.s3.us-east-2.amazonaws.com/recommenders/datasets/content-filtering/25k_imdb_movie_dataset.csv'>25k_imdb_movie_dataset.csv</a>
+<a href='https://redis-ai-resources.s3.us-east-2.amazonaws.com/recommenders/datasets/content-filtering/text_embeddings.pkl'>text_embeddings.pkl</a>
+<br><br>
 #2
 Add REDIS_HOST, REDIS_PORT, REDIS_PASSWORD as environment variables.<br>
 
