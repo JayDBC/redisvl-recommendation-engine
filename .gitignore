@@ -1,0 +1,4 @@
+venv
+*.ipynb
+streamlit_app.py
+data

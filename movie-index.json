@@ -1,0 +1,55 @@
+{
+    "index": {
+        "name": "idx:movies",
+        "prefix": "movie",
+        "storage_type": "json"
+    },
+    "fields": [
+        {
+            "name": "title",
+            "type": "text"
+        },
+        {
+            "name": "rating",
+            "type": "numeric"
+        },
+        {
+            "name": "rating_count",
+            "type": "numeric"
+        },
+        {
+            "name": "genres",
+            "type": "tag"
+        },
+        {
+            "name": "keywords",
+            "type": "tag"
+        },
+        {
+            "name": "cast",
+            "type": "tag"
+        },
+        {
+            "name": "director",
+            "type": "text"
+        },
+        {
+            "name": "year",
+            "type": "numeric"
+        },
+        {
+            "name": "full_text",
+            "type": "text"
+        },
+        {
+            "name": "embedding",
+            "type": "vector",
+            "attrs": {
+                "dims": 384,
+                "algorithm": "flat",
+                "datatype": "float32",
+                "distance_metric": "cosine"
+            }
+        }
+    ]
+}
