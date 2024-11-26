@@ -144,6 +144,9 @@ def main():
     #create native redis search object
     rs = client.ft(index_def['index']['name'])
 
+    #create vectorizer
+    vectorizer = HFTextVectorizer(model='sentence-transformers/paraphrase-MiniLM-L6-v2')
+
     #materialize the search index
     load_data = input("Would you like to load/reload data? (y/n) ")
 
@@ -157,11 +160,11 @@ def main():
         data = df.to_dict(orient='records')
         index.load(data)
 
-    mode = input("\nSelect query mode: [1] Text Search [2] Vector Search ")
+    mode = input("\nSelect query mode: [1] Text Search [2] Vector Search [3] Movie Recommendations : ")
 
     prompt_text = "What movie did you Watch ? "
 
-    if mode == "1":
+    if mode != "3":
         prompt_text = "Enter your Movie Search: "
 
 
@@ -176,6 +179,19 @@ def main():
             for doc in res.docs:
                 print(f"{doc.title}: Rating: {doc.rating} Year: {doc.year}\n {doc.keywords}\n")
                 print("---------------------------------------------------------------")
+
+        elif mode == "2":
+            #vectorize the search string     
+            search_vector = vectorizer.embed(qry, as_buffer=False)
+            filter = None          
+                
+            recs = get_recommendations(index, search_vector, filter, num_results=5, distance=0.6)
+
+            print("\nI found the following movies\n")
+            for rec in recs:
+                print(f">> {rec['title']}: Genre: {rec['genres']}\n\t {rec['full_text']}")
+
+            print("-------------------------------------------------")
 
         else:
             #recommend similar movies
