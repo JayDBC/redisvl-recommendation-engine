@@ -47,7 +47,6 @@ def prepare_data():
 
     # add a column to the dataframe with all the text we want to embed
     df["full_text"] = df["title"] + ". " + df["overview"] + " " + df['keywords'].apply(lambda x: ', '.join(x))
-    df["full_text"][0]
 
     #Vectorize the data from scratch
     #vectorizer = HFTextVectorizer(model='sentence-transformers/paraphrase-MiniLM-L6-v2')
@@ -173,7 +172,8 @@ def main():
 
         if qry == "bye" or qry == "quit":
             break
-        elif mode == "1":   
+        elif mode == "1":
+            #TEXT SEARCH   
             res = search_movies(rs, qry) 
             print(f"I found {res.total} movies.\n")
             for doc in res.docs:
@@ -181,7 +181,7 @@ def main():
                 print("---------------------------------------------------------------")
 
         elif mode == "2":
-            #vectorize the search string     
+            #VECTOR SEARCH    
             search_vector = vectorizer.embed(qry, as_buffer=False)
             filter = None          
                 
@@ -189,12 +189,12 @@ def main():
 
             print("\nI found the following movies\n")
             for rec in recs:
-                print(f">> {rec['title']}: Genre: {rec['genres']}\n\t {rec['full_text']}")
+                print(f"● {rec['title']}: Genre: {rec['genres']}\n\t {rec['full_text']}")
 
             print("-------------------------------------------------")
 
         else:
-            #recommend similar movies
+            #RECOMMENDATION ENGINE
             search_result = get_movie_vector(rs, f"@title:({qry})")
 
             if search_result.total > 0:
@@ -202,7 +202,7 @@ def main():
                 movie_vector = json.loads(search_result.docs[0].embedding)
 
                 #Input Genre
-                genre = input("\nWould you filter by Genre? ")
+                genre = input("\nFilter by Genre: ")
                 genre_list = None
 
                 if genre != None or genre != "":
@@ -214,7 +214,7 @@ def main():
 
                 print("\nI recommend the following movies\n")
                 for rec in recs:
-                    print(f">> {rec['title']}: Genre: {rec['genres']}\n\t {rec['full_text']}")
+                    print(f"● {rec['title']}: Genre: {rec['genres']}\n\t {rec['full_text']}")
 
                 print("-------------------------------------------------")
         
