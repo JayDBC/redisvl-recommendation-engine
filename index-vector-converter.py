@@ -1,8 +1,5 @@
-import ast
 import os
 import pandas as pd
-import pickle
-import requests
 import warnings
 import json
 import numpy as np
@@ -10,9 +7,6 @@ import numpy as np
 from redis import Redis
 from redisvl.schema import IndexSchema
 from redisvl.index import SearchIndex
-from redisvl.query import RangeQuery
-from redisvl.utils.vectorize import HFTextVectorizer
-from redisvl.query.filter import Tag, Num, Text
 
 from redis.commands.search.query import  Query
 
