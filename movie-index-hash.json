@@ -1,0 +1,39 @@
+{
+    "index": {
+        "name": "idx:movies",
+        "prefix": "movie",
+        "storage_type": "hash"
+    },
+    "fields": [
+        {
+            "name": "title",
+            "type": "text"
+        },
+        {
+            "name": "rating",
+            "type": "numeric"
+        },
+        {
+            "name": "director",
+            "type": "text"
+        },
+        {
+            "name": "year",
+            "type": "numeric"
+        },
+        {
+            "name": "full_text",
+            "type": "text"
+        },
+        {
+            "name": "embedding",
+            "type": "vector",
+            "attrs": {
+                "dims": 1024,
+                "algorithm": "hnsw",
+                "datatype": "float32",
+                "distance_metric": "cosine"
+            }
+        }
+    ]
+}
