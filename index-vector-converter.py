@@ -164,8 +164,6 @@ def main():
 
     REDIS_URL = f"redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}"
 
-    REDIS_URL = f"redis://:{REDIS_PASSWORD}@redis-12400.jsd-aa1.demo.redislabs.com:12400"
-
     client = Redis.from_url(REDIS_URL)
 
     print(f"Test Connection {client.ping()}")
